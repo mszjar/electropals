@@ -84,4 +84,9 @@ end
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem "pundit"
 gem "dotenv-rails", groups: [:development, :test]
+gem "cloudinary"
+gem "rails_admin", "3.0"
+gem "sassc-rails"
+gem "pg_search"
+gem "faker"
 
