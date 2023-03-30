@@ -1,20 +1,23 @@
-<div class="container">
-  <div>
-  <p>Articles</p>
-  </div>
+<div class="container_index">
+  <h1>Articles</h1>
+</div>
+
+
+<div class="container-index">
   <div class="cards">
     <% @posts.each do |post| %>
-      <%= link_to post_path(post.id) do %>
-          <div class="card">
-            <% if post.photo.attached? %>
-              <%= cl_image_tag post.photo.key, width: 300, height: 200, crop: :fill %>
-            <% else %>
-              <%= image_tag "default_image.png", width: 300, height: 200, crop: :fill%>
-            <% end %>
-            <%= post.title%>
-            <%= post.content%>
-          </div>
-      <% end %>
+    <%= link_to post_path(post)  do %>
+    <div class="card-trip">
+      <%= cl_image_tag post.photo.key %>
+      <div class="card-trip-infos">
+        <div>
+          <h2><%=post.title%></h2>
+          <p><%=post.content%></p>
+        </div>
+        <h2 class="card-trip-pricing"><%=post.url%></h2>
+      </div>
+    </div>
+    <%end%>
     <% end %>
   </div>
 </div>
