@@ -22,7 +22,7 @@ class PostsController < ApplicationController
     authorize @post
     if @post.save
       # sleep 3
-      redirect_to posts_path
+      redirect_to post_path(@post)
     else
       render :new, status: :unprocessable_entity
     end

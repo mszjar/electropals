@@ -1,2 +1,16 @@
-<h1>Posts#new</h1>
-<p>Find me in app/views/posts/new.html.erb</p>
+<div >
+    <h1>Publish an article</h1>
+</div>
+<div class="container">
+  <div class="form-group mt-3">
+    <div class="text">
+      <%= simple_form_for [@post] do |f| %>
+          <%= f.input :title, class: "form-control", placeholder: "Your article's title", label:"Title"%>
+          <%= f.input :content, class: "form-control", placeholder: "The article's content", label: "Content" %>
+          <%= f.input :url, class: "form-control", placeholder: "", label: "Url"  %>
+          <%= f.input :photo, as: :file, class: "form-control", placeholder: "Image" %>
+          <%= f.submit "Publish", class: "btn btn-flat"%>
+        <% end %>
+    </div>
+  </div>
+</div>

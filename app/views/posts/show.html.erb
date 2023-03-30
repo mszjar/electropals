@@ -1,2 +1,48 @@
-<h1>Posts#show</h1>
-<p>Find me in app/views/posts/show.html.erb</p>
+<div class="container">
+
+  <div class="show-cards">
+
+    <div class="photo-map">
+      <div class="photo-btn">
+        <%= cl_image_tag(@post.photo.key, class:"car-photo" ) %>
+        <% if current_user == @post.user %>
+          <%= link_to "x", post_path(@post), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: "btn btn-danger text-decoration-none" %>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="car-infos">
+      <h1> <%= @post.title %></h1>
+      <ul>
+        <li><i class="fa-sharp fa-solid fa-palette"></i>
+          <p><%= @post.content %></p>
+        </li>
+        <li><i class="fa-sharp fa-solid fa-road"></i>
+          <p><%= @post.url %></p>
+        </li>
+      </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="show-reviews">
+
+    <div class="show-review">
+        <h2>Avis (<%= @post.comments.count %>)</h2>
+        <br>
+        <% @post.comments.reverse.each do |comment|%>
+        <p><%= cl_image_tag(User.find(@post.user_id).photo.key, class:"avatar" )%></p>
+        <p><%= comment.content %></p>
+        <% end %>
+    </div>
+
+    <div class="review_formulaire" data-controller="star-review">
+      <h2>Write a comment</h2>
+      <%= simple_form_for [@post, @comment] do |f| %>
+        <%= f.input :content %>
+        <%= f.submit "Publish your comment", class: "btn btn-flat" %>
+      <% end %>
+    </div>
+
+  </div>
+</div>
