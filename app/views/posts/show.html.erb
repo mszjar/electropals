@@ -5,7 +5,11 @@
 
     <div class="photo-map">
       <div class="photo-btn">
+      <% if @post.photo.key.nil? %>
+        <%= image_tag "default_image.png", class:"car-photo" %>
+      <% else %>
         <%= cl_image_tag(@post.photo.key, class:"car-photo" ) %>
+      <% end %>
         <% if current_user == @post.user %>
           <%= link_to "x", post_path(@post), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: "btn btn-danger text-decoration-none" %>
         <% end %>
