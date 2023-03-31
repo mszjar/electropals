@@ -33,7 +33,12 @@
         <h2>Comments (<%= @post.comments.count %>)</h2>
         <% @post.comments.reverse.each do |comment|%>
           <div class="d-flex mt-3">
+            <% if User.find(comment.user_id).photo.key.nil? %>
+            <p><%= image_tag "default_image.png", class:"avatar" %></p>
+
+            <% else %>
             <p><%= cl_image_tag(User.find(comment.user_id).photo.key, class:"avatar" )%></p>
+            <% end %>
             <p><%= comment.content %></p>
           </div>
         <% end %>
