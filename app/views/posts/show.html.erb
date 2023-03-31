@@ -14,35 +14,38 @@
     <div class="car-infos">
       <h1> <%= @post.title %></h1>
       <ul>
-        <li><i class="fa-sharp fa-solid fa-palette"></i>
+        <li>
           <p><%= @post.content %></p>
         </li>
-        <li><i class="fa-sharp fa-solid fa-road"></i>
+        <li>
           <p><%= @post.url %></p>
         </li>
       </ul>
+    </div>
+
+  </div>
+
+
+
+  <div class="show-comment">
+
+    <div class="form-group mt-3">
+      <div class="text">
+        <h2>Comments (<%= @post.comments.count %>)</h2>
+        <% @post.comments.reverse.each do |comment|%>
+          <div class="d-flex mt-3">
+            <p><%= cl_image_tag(User.find(@post.user_id).photo.key, class:"avatar" )%></p>
+            <p><%= comment.content %></p>
+          </div>
+        <% end %>
+        <%= simple_form_for [@post, @comment] do |f| %>
+          <p><%= f.input :content, class: "form-control", placeholder: "Type your comment here...", label: false %></p>
+          <div class="show-comment-btn">
+            <%= f.submit "Publish your comment", class: "btn btn-flat" %>
+          </div>
+            <% end %>
       </div>
     </div>
   </div>
 
-  <div class="show-reviews">
-
-    <div class="show-review">
-        <h2>Avis (<%= @post.comments.count %>)</h2>
-        <br>
-        <% @post.comments.reverse.each do |comment|%>
-        <p><%= cl_image_tag(User.find(@post.user_id).photo.key, class:"avatar" )%></p>
-        <p><%= comment.content %></p>
-        <% end %>
-    </div>
-
-    <div class="review_formulaire" data-controller="star-review">
-      <h2>Write a comment</h2>
-      <%= simple_form_for [@post, @comment] do |f| %>
-        <%= f.input :content %>
-        <%= f.submit "Publish your comment", class: "btn btn-flat" %>
-      <% end %>
-    </div>
-
-  </div>
 </div>

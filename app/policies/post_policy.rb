@@ -1,7 +1,8 @@
 class PostPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      user.admin? ? scope.all : scope.where(user: user)
+      # user.admin? ? scope.all : scope.where(user: user)
+      scope.all
     end
   end
 
